@@ -8,19 +8,19 @@ function gettingJSON(){
     if(document.querySelector("#location").value==""){
         location = "Ann Arbor"
     }else
-    {location = document.querySelector("#location").value}
+    {location = document.querySelector("#location").value;}
     // Your code here.
     console.log("Location is : " + location);
 
     //set default temperature format if one isn't provided
     let format;
 
-    if(document.querySelector("#fahrenheit").value=="" && document.querySelector("#celcius").value==""){
-        format = "imperial"}
-    else if(document.querySelector("#fahrenheit").value=="imperial"){
-        format = "imperial"}
-    else{ format = "metric"
-      }
+    if(document.querySelectorAll("input[name=temp]:checked").length== 0){
+      format = "imperial"
+    }else {
+      format = document.querySelectorAll("input[name=temp]:checked")[0].value;
+    }
+
     // Your code here.
     console.log("Format is " + format);
 
@@ -45,7 +45,7 @@ function gettingJSON(){
         //I would print the JSON to the console
         // Your code here.
         loc.innerHTML = (json["name"]);
-        temp.innerHTML = (json["main"].temp) + "with" + (json["weather"][0].description)
+        temp.innerHTML = (json["main"].temp) + " with " + (json["weather"][0].description)
         console.log(JSON.stringify(json))
         tempImg.src = "http://openweathermap.org/img/wn/" + (json["weather"][0].icon + ".png")
         tempImg.alt = (json["weather"][0].description)
